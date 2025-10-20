@@ -29,3 +29,15 @@ It performs the following automated steps:
    - **Actions tab:** All jobs pass 
    - **DockerHub:** New image is uploaded 
 
+---
+
+## Screenshots
+
+### 1. GitHub Actions Workflow
+![GitHub Actions](screenshots/github-actions.JPG)
+
+### 2. DockerHub Image
+![DockerHub](screenshots/docker-hub.JPG)
+
+### 3. Running App (Play With Docker)
+![Play With Docker](screenshots/Output.JPG)
