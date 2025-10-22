@@ -1,38 +1,43 @@
-# Jenkins CI/CD Pipeline
+# Automate Code Deployment Using CI/CD Pipeline (GitHub Actions)
 
 ## Objective
-Automate the build and deployment of a Node.js application using Jenkins and Docker.
+To set up a CI/CD pipeline that automatically builds and deploys a Node.js web app using GitHub Actions and Docker.
 
 ---
 
-## Jenkins Pipeline Stages
 
-1. **Checkout**  
-   Pull the latest code from GitHub.
+## Workflow Overview
+The pipeline is defined in `.github/workflows/main.yml`.
 
-2. **Install & Test**  
-   - Verify Node.js and npm versions.  
-   - Install dependencies using `npm install`.  
-   - Run tests.
+It performs the following automated steps:
 
-3. **Build Docker Image**  
-   - Build Docker image with `docker build -t <image_name>:<tag> .`  
-   - Tag the image as `latest`.
-
-4. **Push to DockerHub**  
-   - Authenticate with DockerHub credentials.  
-   - Push the image to DockerHub registry.
-
-5. **Deploy**  
-   - Stop and remove any existing container.  
-   - Run a new container from the built image, exposing port 3000.
+1. **Trigger:** Runs whenever code is pushed to the `main` branch.
+2. **Test Job:**
+   - Checks out the repository.
+   - Installs dependencies (`npm install`).
+   - Runs a sample test script (`test.js`).
+3. **Build & Push Job:**
+   - Builds a Docker image using the `Dockerfile`.
+   - Pushes the image to **DockerHub** using secrets (`DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`).
 
 ---
 
-## Jenkins Configuration
-
-- **Pipeline**: Multibranch or Pipeline project.  
-- **SCM**: Git repository URL pointing to this project.  
-- **Build Triggers**: Poll SCM every 5 minutes  
+## Testing the CI/CD Pipeline
+1. Commit and push any change to `main`.
+2. GitHub Actions runs automatically.
+3. Verify results:
+   - **Actions tab:** All jobs pass 
+   - **DockerHub:** New image is uploaded 
 
 ---
+
+## Screenshots
+
+### 1. GitHub Actions Workflow
+![GitHub Actions](screenshots/github-actions.JPG)
+
+### 2. DockerHub Image
+![DockerHub](screenshots/docker-hub.JPG)
+
+### 3. Running App (Play With Docker)
+![Play With Docker](screenshots/Output.JPG)
